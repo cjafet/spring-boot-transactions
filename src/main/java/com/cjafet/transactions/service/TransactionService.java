@@ -30,12 +30,18 @@ public class TransactionService {
     }
 
     private Transaction buildTransaction(TransactionRequest transactionRequest, Optional<Customer> customer) {
-        Transaction transaction = Transaction.builder()
-                .amount(transactionRequest.getAmount())
+       return Transaction.builder()
+                .amount(verifyTransactionType(transactionRequest))
                 .customer(customer.get())
                 .operationTypeID(transactionRequest.getOperationTypeID())
                 .eventDate(Instant.now())
                 .build();
-        return transaction;
+    }
+
+    private Double verifyTransactionType(TransactionRequest tx) {
+        if(tx.getOperationTypeID().equals(1)) {
+            tx.setAmount(-tx.getAmount());
+        }
+        return tx.getAmount();
     }
 }

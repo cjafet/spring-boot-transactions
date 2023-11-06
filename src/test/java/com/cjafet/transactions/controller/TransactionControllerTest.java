@@ -57,8 +57,7 @@ public class TransactionControllerTest {
                 .andExpect(jsonPath("$.operation_type_id").value(4))
                 .andExpect(jsonPath("$.event_date").exists())
                 .andExpect(jsonPath("$.event_date").isNotEmpty())
-                .andExpect(jsonPath("$.customer.customer_id").value(1))
-                .andExpect(jsonPath("$.customer.document_number").value("12345678900"))
+                .andExpect(jsonPath("$.customer_id").value(1))
                 .andReturn();
     }
 

@@ -25,7 +25,7 @@ public class TransactionService {
             Transaction transaction = buildTransaction(transactionRequest, customer);
             return repository.save(transaction);
         } else {
-            throw new CustomerNotFoundException();
+            throw new CustomerNotFoundException(String.format("CustomerID=%s not found", transactionRequest.getCustomerID()));
         }
     }
 

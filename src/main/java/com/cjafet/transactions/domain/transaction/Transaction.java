@@ -1,7 +1,7 @@
 package com.cjafet.transactions.domain.transaction;
 
 import com.cjafet.transactions.domain.customer.Customer;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,7 +36,12 @@ public class Transaction implements Serializable {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Instant eventDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIncludeProperties(value = {"customer_id"})
+    @JsonProperty("customer_id")
+    @JoinColumn(name = "customer_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "customer_id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Customer customer;
 
 

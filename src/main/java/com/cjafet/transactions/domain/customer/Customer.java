@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "account_id")
+    @Column(name = "customer_id")
     @JsonProperty("customer_id")
     private Long customerID;
 

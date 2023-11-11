@@ -45,7 +45,6 @@ public class TransactionService {
         }
             customer.get().setBalance(updatedBalance);
             customerService.updateCustomer(customer.get());
-        System.out.println("New balance" + updatedBalance);
     }
 
     private Double addToBalance(TransactionRequest tx, Optional<Customer> customer) {

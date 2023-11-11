@@ -24,7 +24,6 @@ public class TransactionService {
         Optional<Customer> customer = customerService.findOneById(String.valueOf(transactionRequest.getCustomerID()));
         if(customer.isPresent()) {
             Double balanceWithLimit = getCustomerBalance(customer) + getCustomerLimit(customer);
-
             if(transactionRequest.getAmount() <= balanceWithLimit) {
                 updateBalance(transactionRequest, customer);
                 Transaction transaction = buildTransaction(transactionRequest, customer);

@@ -4,6 +4,7 @@ import com.cjafet.transactions.domain.customer.Customer;
 import com.cjafet.transactions.domain.request.TransactionRequest;
 import com.cjafet.transactions.domain.transaction.Transaction;
 import com.cjafet.transactions.exception.CustomerNotFoundException;
+import com.cjafet.transactions.exception.InvalidOperationTypeException;
 import com.cjafet.transactions.exception.LimitNotAvailableException;
 import com.cjafet.transactions.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,8 @@ public class TransactionService {
             updatedBalance = removeFromBalance(tx, customer);
         } else if (customer.isPresent() && tx.getOperationTypeID().equals(4)) {
             updatedBalance = addToBalance(tx, customer);
+        } else {
+            throw new InvalidOperationTypeException("Invalid Operation Type");
         }
             customer.get().setBalance(updatedBalance);
             customerService.updateCustomer(customer.get());

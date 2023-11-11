@@ -1,6 +1,7 @@
 package com.cjafet.transactions.domain.customer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,14 @@ public class Customer implements Serializable {
     @Column(name = "document_number")
     @JsonProperty("document_number")
     private String documentNumber;
+
+
+    @Nonnull
+    @Column(name = "available_credit_limit")
+    private Double availableCreditLimit;
+
+    @Column(name = "balance")
+    private Double balance;
 
 //    @OneToMany(mappedBy = "customer")
 //    private List<Transaction> tranactions;

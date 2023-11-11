@@ -36,7 +36,7 @@ public class Transaction implements Serializable {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Instant eventDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
 //    @JsonIncludeProperties(value = {"customer_id"})
     @JsonProperty("customer_id")
     @JoinColumn(name = "customer_id")
